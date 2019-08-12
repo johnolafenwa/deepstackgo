@@ -14,7 +14,7 @@ type Response struct{
 
 func TestGetResponse(t *testing.T){
 
-	c := New("http://localhost:82")
+	c := New("http://test.johnolafenwa.me")
 
 	req_data := utils.Request{}
 	file := utils.File{Name: "image", Filepath: "scene.jpg" }
