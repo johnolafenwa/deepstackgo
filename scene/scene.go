@@ -42,3 +42,13 @@ func (scene scene) GetScene(path string) response.SceneResponse{
 	return result
 
 }
+
+func (scene scene) GetSceneAsync(call chan response.SceneResponse,path string){
+
+	go func(){
+		response := scene.GetScene(path)
+
+	call <- response
+	}()
+
+}
