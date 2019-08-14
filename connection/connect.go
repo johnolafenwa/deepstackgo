@@ -5,29 +5,29 @@ import "github.com/johnolafenwa/deepstackgo/utils"
 import "os"
 import "path/filepath"
 
-type connection struct {
+type Connection struct {
 
 	URL string
 }
 
-func New(url string) connection{
+func New(url string) Connection{
 
-	c := connection{URL: url}
+	c := Connection{URL: url}
 	return c
 	
 }
 
-func (c connection) getResponse(endpoint string,out interface{}, params utils.Request, files utils.Files  ) interface{} {
+func (c Connection) GetResponse(endpoint string,out interface{}, params utils.Request, files utils.Files  ) interface{} {
 
 	 var uploads []req.FileUpload
 	
 	 for _,f := range files.Files {
-			f_data,_ := os.Open(f.Filepath)
+			f_data,_ := os.Open(f.Path)
 			uploads = append(uploads, req.FileUpload{
 
 				File: f_data,
 				FieldName: f.Name,
-				FileName: filepath.Base(f.Filepath),
+				FileName: filepath.Base(f.Path),
 
 			})
 	 }

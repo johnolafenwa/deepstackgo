@@ -2,6 +2,7 @@ package connection
 
 import "testing"
 import "github.com/johnolafenwa/deepstackgo/utils"
+import "github.com/johnolafenwa/deepstackgo/response"
 
 type Response struct{
 
@@ -11,19 +12,18 @@ type Response struct{
 	Error string `json:"error"`
 }
 
-
 func TestGetResponse(t *testing.T){
 
 	c := New("http://test.johnolafenwa.me")
 
 	req_data := utils.Request{}
-	file := utils.File{Name: "image", Filepath: "scene.jpg" }
+	file := utils.File{Name: "image", Path: "scene.jpg" }
 	filelist := []utils.File{file}
 	files := utils.Files{Files: filelist}
 	
-	response := Response{}
+	response := response.SceneResponse{}
 
-	c.getResponse("v1/vision/scene",&response,req_data,files)
+	c.GetResponse("v1/vision/scene",&response,req_data,files)
 
 	if response.Success != true {
 		t.Errorf("Success %v is not %v, error is %s",response.Success,true,response.Error)

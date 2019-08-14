@@ -14,7 +14,7 @@ type Files struct {
 
 type File struct {
 
-	Filepath string
+	Path string
 	Name string
 
 }
